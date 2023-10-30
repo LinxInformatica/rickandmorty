@@ -1,0 +1,101 @@
+.Card {
+  box-sizing: border-box;
+  margin: 10px;
+  width: 200px;
+  height: 350px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-weight: bolder;
+  color: black;
+  font-size: 0.8em;
+  position: relative;
+}
+
+.Card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.Card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.Card img {
+  border-radius: 50%;
+  padding: 0.2em;
+  background-color: grey;
+  width: 150px;
+  height: 150px;
+}
+
+.name {
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 5px;
+  color: darkgreen;
+}
+
+.data {
+  margin: 0;
+}
+
+.buttonCard {
+  height: 25px;
+  width: 25px;
+  border-radius: 40%;
+  top: -9px;
+  right: -9px;
+  position: absolute;
+  text-align: center;
+  color: black;
+  background-color: rgb(197, 191, 191);
+}
+
+.buttonFav {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  top: 70px;
+  left: 130px;
+  position: absolute;
+  text-align: left;
+  background-color: white;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+
+.buttonNoFav {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  top: 70px;
+  left: 130px;
+  position: absolute;
+  text-align: center;
+  background-color: rgb(197, 191, 191);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+
+.h2 {
+  font-size: 1em;
+  padding: 0;
+  color: white;
+}
+
+.h3 {
+  font-size: 0.8em;
+  padding: 0;
+}/*# sourceMappingURL=Card.module.css.map */

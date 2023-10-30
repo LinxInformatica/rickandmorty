@@ -1,0 +1,20 @@
+.Nav {
+  border-radius: 15px;
+  margin: 10px;
+  width: 1280px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Nav img {
+  padding: 5px;
+  border: 2px solid;
+  border-color: white;
+  border-radius: 15px;
+  height: 35px;
+  width: 135px;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.22);
+  transition: 300ms ease-in-out;
+  background-color: rgba(214, 202, 202, 0.58);
+}/*# sourceMappingURL=Nav.module.css.map */

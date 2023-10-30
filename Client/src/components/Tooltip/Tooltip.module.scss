@@ -1,0 +1,27 @@
+.divTooltip {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+  
+  .tooltip-container:hover .tooltip {
+    display: block;
+  }

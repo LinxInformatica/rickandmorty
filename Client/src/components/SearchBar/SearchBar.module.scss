@@ -1,0 +1,75 @@
+$nameColor : darkgreen;
+$cardBg : rgba(217, 217, 217, 0.58);
+$OverColor : black;
+
+@mixin formatoBase {
+  margin: 2px 3px 8px 8px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  //    padding: 1em;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  background: $cardBg;
+  border: 1px solid white;
+  height: 40px;
+  // width: 800px;
+  // background-color: #ccc;
+  transition: 300ms ease-in-out;
+
+}
+
+/* styling of whole input container */
+.SearchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.SearchBar input {
+  @include formatoBase();
+}
+
+.SearchBar input:focus {
+  // background-color: rgb(99, 163, 99);
+  color: $nameColor;
+  transform: scale(1.05);
+  box-shadow: 2px 2px 25px #969696,
+    -2px -2px 25px #ffffff;
+}
+
+.SearchBar input:hover {
+  border: 1px solid $OverColor;
+  transform: scale(1.05);
+}
+
+.SearchBar button {
+  @include formatoBase;
+  font-size: .8em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  border: 1px solid white;
+  height: 40px;
+  // border: 1px;
+
+}
+
+.SearchBar button:hover {
+  border: 1px solid $OverColor;
+  transform: scale(1.15);
+}
+
+.SearchBar button:focus {
+  color: $nameColor;
+  transform: scale(1.05);
+  box-shadow: 2px 2px 25px #969696,
+    -2px -2px 25px #ffffff;
+}
+
+.SearchBar img {
+  width: 150px;
+  height: 50px;
+}

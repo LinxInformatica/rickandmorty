@@ -1,0 +1,51 @@
+.Detail {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 900px;
+  height: 500px;
+  margin: 10px;
+  background: rgba(217, 217, 217, 0.58);
+  box-sizing: border-box;
+  border: 1px solid white;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-weight: bolder;
+  color: black;
+  font-size: 0.8em;
+  position: relative;
+}
+
+.Detail:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.Detail:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.Detail img {
+  border-radius: 20%;
+  padding: 0.2em;
+  background-color: grey;
+  width: 90%;
+  height: 90%;
+}
+
+.Detail data {
+  color: darkgreen;
+  font-size: 1.2em;
+  background-color: red;
+}/*# sourceMappingURL=Detail.module.css.map */

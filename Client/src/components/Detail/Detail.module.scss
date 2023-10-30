@@ -1,0 +1,55 @@
+$cardColor : black;
+$cardOverColor : black;
+$cardImgBgColor : grey;
+$cardBg : rgba(217, 217, 217, 0.58);
+
+$nameColor : darkgreen;
+
+.Detail {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 900px;
+  height: 500px;
+  margin: 10px;
+  background: $cardBg;
+  box-sizing: border-box;
+  border: 1px solid white;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  user-select: none;
+  font-weight: bolder;
+  color: $cardColor;
+  font-size: .8em;
+  position: relative;
+}
+
+.Detail:hover {
+  border: 1px solid $cardOverColor;
+  transform: scale(1.05);
+}
+
+.Detail:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.Detail img {
+  border-radius: 20%;
+  padding: .2em;
+  background-color: $cardImgBgColor;
+  width: 90%;
+  height: 90%;
+}
+
+.Detail data {
+  color:$nameColor;
+  font-size: 1.2em;
+  background-color: red;
+}
