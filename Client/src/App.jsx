@@ -24,15 +24,31 @@ export default function App() {
    const navigate = useNavigate();
    const [access, setAccess] = useState(false);
 
-   function login(userData) {
+   async function login(userData) {
+
       const { email, password } = userData;
       const URL = SITEROUTES.URL + '/login';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
+
+      try {
+         const { data } = await axios(URL + `?email=${email}&password=${password}`)
          setAccess(data);
          access && navigate('/home');
-      });
-   }
+
+      } catch (error) {
+         window.alert('Error de acceso')
+      }
+   };
+
+   // von promesas
+   // function login(userData) {
+   //    const { email, password } = userData;
+   //    const URL = SITEROUTES.URL + '/login';
+   //    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+   //       const { access } = data;
+   //       setAccess(data);
+   //       access && navigate('/home');
+   //    });
+   // }
    // sin Express
    //const login = (userData) => {
    // if (userData.email === EMAIL && userData.password == PASSWORD) {
@@ -51,26 +67,41 @@ export default function App() {
    // devuelve si el caracter existe      
    const characterExists = (id) => characters.find((character) => character.id === parseInt(id))
 
-   //busca el la api
-   const onFetch = (id) => {
-      fetch(`${SITEROUTES.URL}/character/${id}`)
-         .then((res) => {
-            if (!res.ok) {
-               throw new Error('No hay personajes con ese id!')
-            }
-            return res.json()
-         })
-         .then((data) => {
-            if (data.name) {
-               setCharacters((oldChars) => [...oldChars, data]);
-            } else {
-               window.alert('¡No hay personajes con este ID!');
-            }
-         })
-         .catch((error) => {
-            window.alert(error);
-         })
+   //con async await
+   async function onFetch(id) {
+      try {
+         const { data } = await axios(`${SITEROUTES.URL}/character/${id}`)
+         if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+         }
+
+      } catch (error) {
+         window.alert(error);
+      }
+
    }
+
+   //busca el la api
+   // con promesas
+   // const onFetch = (id) => {
+   //    fetch(`${SITEROUTES.URL}/character/${id}`)
+   //       .then((res) => {
+   //          if (!res.ok) {
+   //             throw new Error('No hay personajes con ese id!')
+   //          }
+   //          return res.json()
+   //       })
+   //       .then((data) => {
+   //          if (data.name) {
+   //             setCharacters((oldChars) => [...oldChars, data]);
+   //          } else {
+   //             window.alert('¡No hay personajes con este ID!');
+   //          }
+   //       })
+   //       .catch((error) => {
+   //          window.alert(error);
+   //       })
+   // }
 
    const onSearch = (id) => {
       if (characterExists(id) === undefined) {
