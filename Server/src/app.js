@@ -27,4 +27,4 @@ server.use('/rickandmorty', routes)
 
 
 
-module.exports = { server }
+module.exports =  server 
