@@ -17,7 +17,8 @@ export default (state = initialState, {type,payload}) => {
       //   allCharacters: [...state.allCharacters, payload]
       // }
     case REMOVE_FAV:
-      return { ...state, myFavorites: payload };
+      console.log('payload',payload)
+      return { ...state, myFavorites: payload,allCharacters: payload  };
       // sin express
       // return {
       //   ...state,

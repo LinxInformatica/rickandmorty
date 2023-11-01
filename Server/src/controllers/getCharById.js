@@ -26,7 +26,7 @@ const getCharById = async (req, res) => {
 
 
     } catch (error) {
-        res.status(500).json({ error: reason.message });
+        res.status(500).json({ error: error.message });
     }
     // con promesas
     //const getCharById = (req, res) => {    
@@ -59,4 +59,4 @@ const getCharById = async (req, res) => {
     //     })
 }
 
-module.exports = getCharById
+module.exports = {getCharById}

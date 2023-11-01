@@ -8,12 +8,9 @@ const postFav = (req, res) => {
 
 const deleteFav = (req, res) => {
     const { id } = req.params
-    if (id === 999) {
-        myFavorites = []
-    } else {
-        myFavorites = myFavorites.filter((fav) => fav.id !== Number(id))
-    }
-    res.status(200).json(myFavorites)
+    myFavorites = myFavorites.filter((fav) => fav.id !== Number(id))
+    console.log(myFavorites.map((f)=>f.name))
+     res.status(200).json(myFavorites)
 }
 
 module.exports = { postFav, deleteFav }

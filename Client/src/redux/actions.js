@@ -52,6 +52,7 @@ export const removeFav = (id) => {
       }
 
    } catch (error) {
+      window.alert(error)
 
    }
 };

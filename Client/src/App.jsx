@@ -31,8 +31,8 @@ export default function App() {
 
       try {
          const { data } = await axios(URL + `?email=${email}&password=${password}`)
-         setAccess(data);
-         access && navigate('/home');
+         setAccess(data.access);
+         data.access && navigate('/home') 
 
       } catch (error) {
          window.alert('Error de acceso')
@@ -154,7 +154,7 @@ export default function App() {
             <Route path={SITEROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
             <Route path={SITEROUTES.ABOUT} element={<About />} />
             <Route path={SITEROUTES.DETAIL} element={<Detail />} />
-            <Route path={SITEROUTES.FAVORITES} element={<Favorites characters={characters} onClose={onClose} />} />
+            <Route path={SITEROUTES.FAVORITES} element={<Favorites onClose={onClose} />} />
          </Routes>
       </div>
    );
