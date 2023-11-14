@@ -30,13 +30,13 @@ export default function Detail() {
          {character.name && (
             <Link to={SITEROUTES.HOME}>
                <div className={styles.Detail}>
+                  <div className={styles.name}>Nombre:
+                     {character.name}
+                  </div>
                   <div className={styles.img}>
                      <img src={character.image} alt='{image}' />
                   </div>
-                  <div classname={styles.data}>
-                     <div>Nombre:
-                        {character.name}
-                     </div>
+                  <div classname={styles.name}>
                      <div>Estado:
                         {character.status}
                      </div>

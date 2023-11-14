@@ -4,7 +4,7 @@ import styles from './Cards.module.scss'
 export default function Cards(props) {
 
    const { characters, onClose} = props;
-
+   
    return (
       <div>
           <div className={styles.Cards}>

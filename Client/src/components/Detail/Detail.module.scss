@@ -5,18 +5,17 @@ $cardBg : rgba(217, 217, 217, 0.58);
 
 $nameColor : darkgreen;
 
+
 .Detail {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  width: 900px;
-  height: 500px;
-  margin: 10px;
-  background: $cardBg;
+  flex-direction: column;
   box-sizing: border-box;
+  margin: 10px;
+  width: 90%;
+  height: 100%;
+  background: $cardBg;
   border: 1px solid white;
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(6px);
@@ -27,8 +26,8 @@ $nameColor : darkgreen;
   user-select: none;
   font-weight: bolder;
   color: $cardColor;
-  font-size: .8em;
-  position: relative;
+  font-size: 1.2em;
+  // position: relative;
 }
 
 .Detail:hover {
@@ -41,15 +40,32 @@ $nameColor : darkgreen;
 }
 
 .Detail img {
-  border-radius: 20%;
+  border-radius: 50%;
   padding: .2em;
   background-color: $cardImgBgColor;
-  width: 90%;
-  height: 90%;
+  width: 200px;
+  height: 200px;
 }
 
-.Detail data {
-  color:$nameColor;
-  font-size: 1.2em;
-  background-color: red;
+.name {
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 5px;
+  color: $nameColor
+}
+
+.data {
+  margin: 0;
+}
+
+
+.h2 {
+  font-size: 1em;
+  padding: 0;
+  color: white;
+}
+
+.h3 {
+  font-size: .8em;
+  padding: 0;
 }

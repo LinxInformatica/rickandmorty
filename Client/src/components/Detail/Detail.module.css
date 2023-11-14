@@ -1,7 +1,7 @@
 .Detail {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: columm;
   align-items: center;
   justify-content: center;
   padding: 2rem;

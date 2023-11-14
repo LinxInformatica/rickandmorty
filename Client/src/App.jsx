@@ -26,16 +26,37 @@ export default function App() {
 
    async function login(userData) {
 
-      const { email, password } = userData;
+      const { email, password, register } = userData;
       const URL = SITEROUTES.URL + '/login';
+      if (email && password) {
 
-      try {
-         const { data } = await axios(URL + `?email=${email}&password=${password}`)
-         setAccess(data.access);
-         data.access && navigate('/home') 
+         if (register) {
+            // registrar usuario nuevo
+            try {
+               const { data, status } = await axios
+                  .post(URL, {
+                     email: email,
+                     password: password
+                  })
+               switch (status) {
+                  case 200:
+                     window.alert('Usuario ya existente')
+                  case 201:
+                     window.alert('Usuario creado exitosamente!!')
+               }
+            } catch (error) {
+               window.alert(error.message)
+            }
+         } else {
+            try {
+               const { data } = await axios(URL + `?email=${email}&password=${password}`)
+               setAccess(data.access);
+               data.access && navigate('/home')
 
-      } catch (error) {
-         window.alert('Error de acceso')
+            } catch (error) {
+               window.alert('Error de acceso')
+            }
+         }
       }
    };
 
@@ -78,6 +99,24 @@ export default function App() {
       } catch (error) {
          window.alert(error);
       }
+
+   }
+
+   async function savedFavorites() {
+      try {
+         const { data } = await axios(`${SITEROUTES.URL}/fav`)
+         if (data) {
+
+            data.map((char) => {
+               if (char.name) setCharacters((oldChars) => [...oldChars, char])
+               console.log('fav', char)
+            })
+         }
+
+      } catch (error) {
+         window.alert(error);
+      }
+
 
    }
 
@@ -136,6 +175,8 @@ export default function App() {
    }
 
    const location = useLocation();
+   // buscar favoritos sesion previa
+   // savedFavorites()
 
    return (
       <div className='App'>

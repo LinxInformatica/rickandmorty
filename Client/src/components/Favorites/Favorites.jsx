@@ -12,7 +12,6 @@ const Favorites = (props) => {
 
     const { characters, onClose } = props;
     const { myFavorites } = props;
-    console.log('favoiritos.,¡', myFavorites)
     const [myFavs, setMyFavs] = useState([])
     const dispatch = useDispatch()
 

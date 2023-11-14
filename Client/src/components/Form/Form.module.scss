@@ -62,16 +62,37 @@ $nameColor : darkgreen;
   }
   
 
-.Form button {
-    width: 80%;
+.buttonSubmit {
+    width: 40%;
     margin: 5px;
     font-size: 1rem;
     position:absolute;
     bottom:0px;
+    left:30px
+    // color:white;
+
+}
+.buttonRegister {
+    width: 35%;
+    margin: 5px;
+    font-size: 1rem;
+    position:absolute;
+    bottom:0px;
+    right:30px
     // color:white;
 
 }
 
+.buttonRegisterDisable {
+    width: 35%;
+    margin: 5px;
+    font-size: 1rem;
+    position:absolute;
+    bottom:0px;
+    right:30px;
+    color:rgb(138, 136, 136);
+
+}
 .Form img {
     position: absolute;
     width: 100%;
