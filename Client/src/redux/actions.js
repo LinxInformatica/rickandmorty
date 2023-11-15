@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./action-types";
+import { ADD_FAV, REMOVE_FAV, GET_FAV,FILTER, ORDER, SET_USERID} from "./action-types";
 import axios from "axios"
 import SITEROUTES from "../helpers/siteroutes.helpers";
 
@@ -8,6 +8,7 @@ export const addFav = (character) => {
 
    try {
       return async (dispatch) => {
+         console.log(character)
          const { data } = await axios.post(endpoint, character)
          return dispatch({
             type: ADD_FAV,
@@ -40,8 +41,8 @@ export const addFav = (character) => {
 //         payload: character
 //     }
 // }
-export const removeFav = (id) => {
-   const endpoint = `${SITEROUTES.URL}/fav/${id}`
+export const removeFav = ({id,userId}) => {
+   const endpoint = `${SITEROUTES.URL}/fav?id=${id}&&userId=${userId}`
    try {
       return async (dispatch) => {
          const { data } = await axios.delete(endpoint)
@@ -90,3 +91,28 @@ export const orderCards = (orden) => {
       payload: orden
    }
 }
+
+export const set_userId = (user) => {
+   return {
+      type: SET_USERID,
+      payload: user
+   }
+
+};
+
+export const getFav = (userId) => {
+   const endpoint = `${SITEROUTES.URL}/fav/${userId}`;
+
+   try {
+      return async (dispatch) => {
+         const { data } = await axios.get(endpoint)
+         return dispatch({
+            type: GET_FAV,
+            payload: data,
+         });
+      }
+   } catch (error) {
+      window.alert(error)
+   }
+};
+

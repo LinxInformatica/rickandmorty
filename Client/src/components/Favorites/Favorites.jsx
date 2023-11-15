@@ -6,7 +6,7 @@ import Card from "../Card/Card"
 import styles from './Favorites.module.scss'
 
 
-import { CHARACTERGENDER, CHARACTERORDER } from "../../helpers/character.helpers";
+import { CHARACTERGENDER } from "../../helpers/character.helpers";
 
 const Favorites = (props) => {
 

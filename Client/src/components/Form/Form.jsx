@@ -79,8 +79,8 @@ export default function Form(props) {
                     </section>
                 ) : null}
 
-                <button className={styles.buttonSubmit} onClick={handleSubmit}>Login </button>
-                <button className={styles.buttonRegister} onClick={handleRegister}>New User</button>
+                {!userData.register ? <button className={styles.buttonSubmit} onClick={handleSubmit}>Login </button> : null}
+                <button className={styles.buttonRegister} onClick={handleRegister}>{userData.register ? "Create User" : "New User"}</button>
 
                 <Tooltip text={errors.password}>
                     <div class="divTooltip"></div>

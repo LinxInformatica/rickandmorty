@@ -1,35 +1,36 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./action-types";
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, SET_USERID, GET_FAV } from "./action-types";
 import { CHARACTERGENDER } from "../helpers/character.helpers";
 
 const initialState = {
   myFavorites: [],
-  allCharacters: []
+  allCharacters: [],
+  userId: 0,
+  userName: ''
 }
 
-export default (state = initialState, {type,payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_FAV:
       return { ...state, myFavorites: payload, allCharacters: payload };
-      //sin express
-      // return {
-      //   ...state,
-      //   myFavorites: [...state.myFavorites, payload],
-      //   allCharacters: [...state.allCharacters, payload]
-      // }
+    //sin express
+    // return {
+    //   ...state,
+    //   myFavorites: [...state.myFavorites, payload],
+    //   allCharacters: [...state.allCharacters, payload]
+    // }
     case REMOVE_FAV:
-      console.log('payload',payload)
-      return { ...state, myFavorites: payload,allCharacters: payload  };
-      // sin express
-      // return {
-      //   ...state,
-      //   myFavorites: state.myFavorites.filter((myFavorite) => myFavorite.id !== parseInt(payload)),
-      //   allCharacters: state.allCharacters.filter((char) => char.id !== parseInt(payload))
-      // }
+      return { ...state, myFavorites: payload, allCharacters: payload };
+    // sin express
+    // return {
+    //   ...state,
+    //   myFavorites: state.myFavorites.filter((myFavorite) => myFavorite.id !== parseInt(payload)),
+    //   allCharacters: state.allCharacters.filter((char) => char.id !== parseInt(payload))
+    // }
     case FILTER:
       return {
         ...state,
         myFavorites: payload === CHARACTERGENDER.ALL ? [...state.allCharacters]
-                                                            : [...state.allCharacters].filter((char) => char.gender === payload)
+          : [...state.allCharacters].filter((char) => char.gender === payload)
       }
     case ORDER:
       switch (payload) {
@@ -49,6 +50,13 @@ export default (state = initialState, {type,payload}) => {
             ...state
           }
       }
+    case GET_FAV:
+      return { ...state, myFavorites: payload, allCharacters: payload };
+
+    case SET_USERID:
+      const { userId, email } = payload
+      return { ...state, userId: userId, userName:email};
+
     default:
       return { ...state }
   }

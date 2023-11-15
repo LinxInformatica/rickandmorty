@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 
 import styles from './Card.module.scss';
 import { addFav, removeFav } from '../../redux/actions';
@@ -8,28 +8,28 @@ import { addFav, removeFav } from '../../redux/actions';
 const Card = (props) => {
    const { id, name, status, species, gender, origin, image, onClose } = props;
    const { addFav, removeFav } = props;
-   const {myFavorites} = props;
+   const { myFavorites, userId } = props;
 
    const [isFav, setIsFav] = useState(false);
 
    const handleFavorite = () => {
       if (isFav) {
          setIsFav(false)
-         removeFav(id)
+         removeFav({id,userId})
       } else {
          setIsFav(true)
-         addFav(props)
+         addFav({ id, name, status, species, gender, origin, image, userId})
       }
    }
 
-   const onDelete = (id)=>{
+   const onDelete = (id) => {
       onClose(id);
-      removeFav(id);
+      removeFav({id,userId});
    }
 
    useEffect(() => {
       myFavorites.forEach((fav) => {
-         if (fav.id=== props.id) {
+         if (fav.id === props.id) {
             setIsFav(true);
          }
       });
@@ -71,7 +71,8 @@ const Card = (props) => {
 }
 const mapStateToProps = (state) => {
    return {
-      myFavorites: state.myFavorites
+      myFavorites: state.myFavorites,
+      userId: state.userId
    }
 
 }

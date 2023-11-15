@@ -1,18 +1,9 @@
-const { Favorite, User, user_favorite } = require('../DB_connection')
+const { Favorite ,User,user_favorite} = require('../DB_connection')
 
-async function deleteFav(req, res) {
-    const { id, userId } = req.query
-    if (!id || !userId) {
-        return res.status(401).json({ error: "Faltan Datos" })
-    }
+async function getFavsByUser(req, res) {
+    const { userId } = req.params
     try {
-        await user_favorite.destroy({
-            where: {
-                userId: userId,
-                favoriteId: id
-            }
-        })
-
+        console.log(userId)
         const favorites = await Favorite.findAll({
             include: [{
                 model: User,
@@ -20,7 +11,7 @@ async function deleteFav(req, res) {
                     model: user_favorite,
                     where: { userId: userId }
                 },
-                attributes: []
+                attributes: ['id']
             }],
             where: {
                 '$userId$': userId
@@ -34,4 +25,4 @@ async function deleteFav(req, res) {
     }
 }
 
-module.exports = { deleteFav }
+module.exports = { getFavsByUser }

@@ -4,6 +4,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const FavoriteModel = require('../src/models/Favorite')
 const UserModel = require('../src/models/User')
+const user_favoriteModel = require('../src/models/user_favorite')
 
 // EJERCICIO 03
 // A la instancia de Sequelize le falta la URL de conexión. ¡Agrégala!
@@ -12,7 +13,7 @@ const UserModel = require('../src/models/User')
 // URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty
 const sequelize = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`,
-   { logging: false, native: false }
+   { logging:false, native: false }
 );
 
 sequelize
@@ -24,18 +25,20 @@ sequelize
 // Debajo de este comentario puedes ejecutar la función de los modelos.
 FavoriteModel(sequelize)
 UserModel(sequelize)
+user_favoriteModel(sequelize)
 //
 //
 
 // Ejercicio 06
 // ¡Relaciona tus modelos aquí abajo!
-const { User, Favorite } = sequelize.models;
+const { User, Favorite, user_favorite} = sequelize.models;
 
-User.belongsToMany(Favorite, { through: 'user_favorite' });
-Favorite.belongsToMany(User, { through: 'user_favorite' });
+User.belongsToMany(Favorite, { through: user_favorite ,foreignKey: "userId"});
+Favorite.belongsToMany(User, { through: user_favorite ,foreignKey: "favoriteId"});
 
 module.exports = {
    User,
    Favorite,
+   user_favorite,
    conn: sequelize,
 };

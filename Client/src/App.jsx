@@ -2,6 +2,8 @@ import './App.scss';
 import axios from 'axios';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav.jsx';
@@ -9,6 +11,8 @@ import Detail from './components/Detail/Detail.jsx'
 import About from './components/About/About.jsx'
 import Form from './components/Form/Form.jsx'
 import Favorites from './components/Favorites/Favorites';
+import { getFav, set_userId } from "../src/redux/actions.js"
+
 
 import SITEROUTES from './helpers/siteroutes.helpers'
 import { TOTALCHARACTERS } from './helpers/character.helpers';
@@ -23,34 +27,51 @@ export default function App() {
    //estado para simular seguridad
    const navigate = useNavigate();
    const [access, setAccess] = useState(false);
+   //para dispatch de userId
+   const dispatch = useDispatch();
 
    async function login(userData) {
 
-      const { email, password, register } = userData;
+      const { email, password, register, validatePassword } = userData;
       const URL = SITEROUTES.URL + '/login';
-      if (email && password) {
 
-         if (register) {
-            // registrar usuario nuevo
-            try {
-               const { data, status } = await axios
-                  .post(URL, {
-                     email: email,
-                     password: password
-                  })
-               switch (status) {
-                  case 200:
-                     window.alert('Usuario ya existente')
-                  case 201:
-                     window.alert('Usuario creado exitosamente!!')
+      if (register) {
+
+         if (email && password && validatePassword) {
+
+            if(password===validatePassword){
+               // registrar usuario nuevo
+               try {
+                  const { data, status } = await axios
+                     .post(URL, {
+                        email: email,
+                        password: password
+                     })
+                  switch (status) {
+                     case 200:
+                        window.alert('Usuario ya existente')
+                     case 201:
+                        window.alert('Usuario creado exitosamente!!')
+                  }
+               } catch (error) {
+                  window.alert(error.message)
                }
-            } catch (error) {
-               window.alert(error.message)
-            }
-         } else {
+            }else{
+ //              window.alert('Las contraseñas no coinciden')   
+            }   
+         }else{
+ //           window.alert('Deberia ingresar los datos solicitados')
+         }
+      } else {
+         if (email && password) {
             try {
                const { data } = await axios(URL + `?email=${email}&password=${password}`)
                setAccess(data.access);
+               //seteo el usuario global
+               dispatch(set_userId(data))
+               //get de favoritos de ese usuario
+               getFavorites(data.userId)
+               //
                data.access && navigate('/home')
 
             } catch (error) {
@@ -82,8 +103,25 @@ export default function App() {
    const logout = () => {
       setAccess(false);
       setCharacters([]);
+      dispatch(set_userId(0))
       navigate(SITEROUTES.FORM);
    }
+
+   async function getFavorites(userId) {
+      const URL = `${SITEROUTES.URL}/fav/${userId}`;
+      try {
+         const { data } = await axios(URL)
+         data.map((char) => {
+            onSearch(char.id)
+         })
+
+      } catch (error) {
+         window.alert(error);
+      }
+
+      dispatch(getFav(userId))
+   }
+
 
    // devuelve si el caracter existe      
    const characterExists = (id) => characters.find((character) => character.id === parseInt(id))
@@ -99,24 +137,6 @@ export default function App() {
       } catch (error) {
          window.alert(error);
       }
-
-   }
-
-   async function savedFavorites() {
-      try {
-         const { data } = await axios(`${SITEROUTES.URL}/fav`)
-         if (data) {
-
-            data.map((char) => {
-               if (char.name) setCharacters((oldChars) => [...oldChars, char])
-               console.log('fav', char)
-            })
-         }
-
-      } catch (error) {
-         window.alert(error);
-      }
-
 
    }
 

@@ -13,7 +13,7 @@ async function login(req,res){
            
            if(user.password!==password) return res.status(403).json({access:false,message:"Contraseña Incorrecta"})
            
-            return res.status(200).json({access:true})
+            return res.status(200).json({access:true,userId:user.id,email:email})
           
 
         } catch (error) {
