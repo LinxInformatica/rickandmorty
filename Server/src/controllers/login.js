@@ -3,7 +3,7 @@ const {User}=require('../DB_connection')
 async function login(req,res){
     const {email,password}=req.query
     if (!email || !password) {
-        res.status(400).json({ error: 'Faltan Datos' })
+        return res.status(400).json({ error: 'Faltan Datos' })
     } else {
         try {
            const user=await User.findOne(
@@ -17,7 +17,7 @@ async function login(req,res){
           
 
         } catch (error) {
-            res.status(500).json({error:error.message})
+            return res.status(500).json({error:error.message})
         }
 
     }

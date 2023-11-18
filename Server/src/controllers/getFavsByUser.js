@@ -3,7 +3,6 @@ const { Favorite ,User,user_favorite} = require('../DB_connection')
 async function getFavsByUser(req, res) {
     const { userId } = req.params
     try {
-        console.log(userId)
         const favorites = await Favorite.findAll({
             include: [{
                 model: User,

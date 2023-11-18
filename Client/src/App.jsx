@@ -39,7 +39,7 @@ export default function App() {
 
          if (email && password && validatePassword) {
 
-            if(password===validatePassword){
+            if (password === validatePassword) {
                // registrar usuario nuevo
                try {
                   const { data, status } = await axios
@@ -47,20 +47,21 @@ export default function App() {
                         email: email,
                         password: password
                      })
-                  switch (status) {
-                     case 200:
-                        window.alert('Usuario ya existente')
-                     case 201:
+                  if (status === 201) {
+                     window.alert('Usuario ya existente')
+                  } else {
+                     if (status === 200) {
                         window.alert('Usuario creado exitosamente!!')
+                     }
                   }
                } catch (error) {
                   window.alert(error.message)
                }
-            }else{
- //              window.alert('Las contraseñas no coinciden')   
-            }   
-         }else{
- //           window.alert('Deberia ingresar los datos solicitados')
+            } else {
+               //              window.alert('Las contraseñas no coinciden')   
+            }
+         } else {
+            //           window.alert('Deberia ingresar los datos solicitados')
          }
       } else {
          if (email && password) {
@@ -101,10 +102,10 @@ export default function App() {
    // }
 
    const logout = () => {
-      setAccess(false);
-      setCharacters([]);
-      dispatch(set_userId(0))
-      navigate(SITEROUTES.FORM);
+      setAccess(false); //acceso en false
+      setCharacters([]); //limpio los chars
+      dispatch(set_userId(0)) //seteo el usuario logueado a 0
+      navigate(SITEROUTES.FORM); 
    }
 
    async function getFavorites(userId) {

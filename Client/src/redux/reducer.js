@@ -27,10 +27,14 @@ export default (state = initialState, { type, payload }) => {
     //   allCharacters: state.allCharacters.filter((char) => char.id !== parseInt(payload))
     // }
     case FILTER:
+      let favs = []
+      payload === CHARACTERGENDER.ALL
+        ? favs = [...state.allCharacters]
+        : favs = [...state.allCharacters].filter((char) => char.gender === payload)
+
       return {
         ...state,
-        myFavorites: payload === CHARACTERGENDER.ALL ? [...state.allCharacters]
-          : [...state.allCharacters].filter((char) => char.gender === payload)
+        myFavorites: favs
       }
     case ORDER:
       switch (payload) {
@@ -55,7 +59,7 @@ export default (state = initialState, { type, payload }) => {
 
     case SET_USERID:
       const { userId, email } = payload
-      return { ...state, userId: userId, userName:email};
+      return { ...state, userId: userId, userName: email };
 
     default:
       return { ...state }

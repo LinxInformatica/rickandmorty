@@ -71,7 +71,7 @@ const Card = (props) => {
 }
 const mapStateToProps = (state) => {
    return {
-      myFavorites: state.myFavorites,
+      myFavorites: state.allCharacters,
       userId: state.userId
    }
 

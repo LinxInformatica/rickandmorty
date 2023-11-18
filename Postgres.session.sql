@@ -1,1 +1,1 @@
-SELECT * from Users;
+SELECT * from user_favorites;
